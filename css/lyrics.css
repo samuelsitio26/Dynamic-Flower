@@ -11,7 +11,7 @@
 }
 
 .lyrics-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 2.5rem;
   font-weight: 600;
   color: #fff;
@@ -39,17 +39,53 @@
   display: inline-block;
   margin: 0 0.3rem;
   animation: wordGlow 0.8s ease-in-out;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.lyrics-word:hover {
+  transform: scale(1.2) !important;
+  color: #ff6b9d !important;
+  text-shadow: 0 0 15px #ff6b9d, 0 0 25px #ff6b9d !important;
 }
 
 @keyframes wordGlow {
-  0%, 100% { 
-    color: #fff; 
+  0%,
+  100% {
+    color: #fff;
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
   }
-  50% { 
-    color: #ff6b9d; 
-    text-shadow: 0 0 20px #ff6b9d, 0 0 30px #ff6b9d, 2px 2px 10px rgba(0, 0, 0, 0.8);
+  50% {
+    color: #ff6b9d;
+    text-shadow: 0 0 20px #ff6b9d, 0 0 30px #ff6b9d,
+      2px 2px 10px rgba(0, 0, 0, 0.8);
     transform: scale(1.05);
+  }
+}
+
+/* Status indicators */
+body[data-playing="true"] {
+  cursor: default !important;
+}
+
+body[data-playing="false"] {
+  cursor: pointer !important;
+}
+
+/* Pulse effect untuk status */
+.lyrics-text.status {
+  animation: statusPulse 2s ease-in-out;
+}
+
+@keyframes statusPulse {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0) scale(1.1);
   }
 }
 
@@ -67,7 +103,7 @@
     max-width: 98vw;
     padding: 15px;
   }
-  
+
   .lyrics-word {
     margin: 0 0.2rem;
   }
@@ -75,13 +111,13 @@
 
 /* Efek tambahan untuk transisi halus */
 .lyrics-container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -20px;
   left: -20px;
   right: -20px;
   bottom: -20px;
-  background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, transparent 70%);
   border-radius: 20px;
   z-index: -1;
   opacity: 0;
